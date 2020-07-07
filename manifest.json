@@ -1,0 +1,32 @@
+{
+  "manifest_version": 2,
+  "name": "Lookup",
+  "version": "0.1",
+
+  "description": "Term-lookup for Firefox",
+  "icons": {
+    "48": "icons/lookup-48.png"
+  },
+
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  
+  "browser_action": {
+    "default_icon": "icons/lookup-48.png",
+    "default_title": "Incite Lookup",
+    "default_popup": "popup/index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["lookup.js"]
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "lookup@firefox.incite.sh"
+    }
+  }
+}
