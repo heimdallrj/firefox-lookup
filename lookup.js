@@ -91,8 +91,6 @@
       `;
     });
 
-    console.log(meaningHtml);
-
     const html = `
       <p>${word}, ${phonetic}</p>
       <div>${meaningHtml.join("")}</div>
@@ -153,6 +151,12 @@
     lookupDialog.style.display = "block";
   };
   document.body.addEventListener("dblclick", dblClickHandler);
+
+  const clickHandler = () => {
+    lookupDialog.innerHTML = lookupDialogDefaultHtml;
+    lookupDialog.style.display = "none";
+  }
+  document.body.addEventListener("click", clickHandler);
 
   init();
 })();

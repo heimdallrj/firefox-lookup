@@ -18,13 +18,15 @@
   "browser_action": {
     "default_icon": "icons/lookup-48.png",
     "default_title": "Incite Lookup",
-    "default_popup": "popup/index.html"
+    "default_popup": "dialogs/options.html"
   },
   "content_scripts": [
     {
-      "matches": ["*://*/*", "*://api.dictionaryapi.dev/api/*"],
+      "matches": [
+        "*://*/*",
+        "*://api.dictionaryapi.dev/api/*"
+      ],
       "js": [
-        "./libs/jquery.min.js",
         "./lookup.js"
       ]
     }
