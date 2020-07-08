@@ -10,7 +10,9 @@
 
   "permissions": [
     "activeTab",
-    "storage"
+    "storage",
+    "webRequest",
+    "*://*/*"
   ],
   
   "browser_action": {
@@ -20,8 +22,11 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://*/*"],
-      "js": ["lookup.js"]
+      "matches": ["*://*/*", "*://api.dictionaryapi.dev/api/*"],
+      "js": [
+        "./libs/jquery.min.js",
+        "./lookup.js"
+      ]
     }
   ],
   "browser_specific_settings": {

@@ -61,8 +61,20 @@
     searchTerm = getSearchTerm(target);
     if (!searchTerm || searchTerm.length === 0 || /\s+/.test(searchTerm)) return;
 
-    const response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
-    console.log("$ ", response);
+    console.log("starting ...");
+    const reqUrl = "https://api.dictionaryapi.dev/api/v1/entries/en/hello";
+
+    const response = await window.fetch(reqUrl);
+    let data = await response.json()
+    console.log("> ", data);
+  
+    // $.getJSON( reqUrl, function( response ) {
+    //   console.log("# ", response);
+    // });
+    console.log("end ...")
+    // $('#incite-lookup-dialog').text("sdsdsdsdsds");
+    // const response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+    // console.log("$ ", response);
   };
 
 })();
