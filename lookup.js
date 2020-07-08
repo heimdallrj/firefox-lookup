@@ -116,36 +116,36 @@
     const response = await window.fetch(defRequestUrl);
 
     // TODO Handle errors and revert the code
-    // const data = await response.json();
-    const data = [
-      {
-        "word": "hello",
-        "phonetic": [
-          "həˈləʊ",
-          "hɛˈləʊ"
-        ],
-        "meaning": {
-          "exclamation": [
-            {
-              "definition": "used as a greeting or to begin a telephone conversation.",
-              "example": "hello there, Katie!"
-            }
-          ],
-          "noun": [
-            {
-              "definition": "an utterance of ‘hello’; a greeting.",
-              "example": "she was getting polite nods and hellos from people"
-            }
-          ],
-          "verb": [
-            {
-              "definition": "say or shout ‘hello’.",
-              "example": "I pressed the phone button and helloed"
-            }
-          ]
-        }
-      }
-    ];
+    const data = await response.json();
+    // const data = [
+    //   {
+    //     "word": "hello",
+    //     "phonetic": [
+    //       "həˈləʊ",
+    //       "hɛˈləʊ"
+    //     ],
+    //     "meaning": {
+    //       "exclamation": [
+    //         {
+    //           "definition": "used as a greeting or to begin a telephone conversation.",
+    //           "example": "hello there, Katie!"
+    //         }
+    //       ],
+    //       "noun": [
+    //         {
+    //           "definition": "an utterance of ‘hello’; a greeting.",
+    //           "example": "she was getting polite nods and hellos from people"
+    //         }
+    //       ],
+    //       "verb": [
+    //         {
+    //           "definition": "say or shout ‘hello’.",
+    //           "example": "I pressed the phone button and helloed"
+    //         }
+    //       ]
+    //     }
+    //   }
+    // ];
 
     const lookupDialogHtml = composeLookupDialogHtml(data);
     lookupDialog.innerHTML = lookupDialogHtml;
