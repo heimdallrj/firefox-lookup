@@ -12,13 +12,25 @@
       div#incite-lookup-dialog {\
         position: absolute;\
         background-color: #e3d6d6;\
+        width: 400px;\
+        height: 100px;\
+        overflow: scroll;\
+        left: 0\
+        top: 100px\
+        display: none\
+        z-index: 999999;\
+        box-shadow: 5px 5px 5px #888;\
+        padding: 10px;\
+        maxWidth: 350px;\
+        minWidth: 200px;\
+        minHeight: 60px;\
       }\
     </style>';
 
   const lookupDialogHtml = 
     `${defaultStyles}\
     <div id="incite-lookup-dialog-container">\
-      <p>lookupDialog</p>\
+      <p>requesting...</p>\
     </div>`;
 
   lookupDialog = document.getElementById("incite-lookup-dialog");
@@ -42,6 +54,7 @@
     lookupDialog = document.createElement('div');
     lookupDialog.id = "incite-lookup-dialog";
     lookupDialog.innerHTML = lookupDialogHtml;
+    lookupDialog.style.display = "none";
     body.appendChild(lookupDialog);
 
     initializedOnce = true;
@@ -61,20 +74,20 @@
     searchTerm = getSearchTerm(target);
     if (!searchTerm || searchTerm.length === 0 || /\s+/.test(searchTerm)) return;
 
-    console.log("starting ...");
-    const reqUrl = "https://api.dictionaryapi.dev/api/v1/entries/en/hello";
+    const reqUrl = `https://api.dictionaryapi.dev/api/v1/entries/en/${searchTerm}`;
+
+    var oRect = target.getRangeAt(0).getBoundingClientRect();
+
+    console.log(oRect);
 
     const response = await window.fetch(reqUrl);
-    let data = await response.json()
-    console.log("> ", data);
+    const data = await response.json()
+    document.getElementById("incite-lookup-dialog-container").innerHTML = `<pre>${JSON.stringify(data)}</pre>`;
+    lookupDialog.style.display = "block";
   
-    // $.getJSON( reqUrl, function( response ) {
-    //   console.log("# ", response);
-    // });
-    console.log("end ...")
-    // $('#incite-lookup-dialog').text("sdsdsdsdsds");
-    // const response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
-    // console.log("$ ", response);
+    lookupDialog.style.zIndex = 99999;
+    lookupDialog.style.top = 0;
+    lookupDialog.style.left = 0;
   };
 
 })();
